@@ -13,7 +13,7 @@ var io = require('socket.io')(http);
 
 io.on('connection', require('./helpers/socket'));
 
-
+app.set('env', process.env.NODE_ENV = process.env.NODE_ENV || 'development'); 
 
 
 
@@ -62,7 +62,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
+app.set('port', process.env.PORT || 3000);
 
-http.listen(3000, function() {
+http.listen(app.get('port'), function() {
   console.info("Server is Listening on port 3000");
 });
